@@ -1,6 +1,8 @@
 asgiref==3.9.1
 distlib==0.4.0
 Django==5.2.4
+django-auth==0.1.9
+django-filter==25.2
 et_xmlfile==2.0.0
 filelock==3.19.1
 numpy==2.3.3
