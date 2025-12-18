@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-++hi)v1#s1w)ti36%g%xorq#6*i@^luvcuys5b8e^yj-#p0q-r'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-++hi)v1#s1w)ti36%g%xorq#6*i@^luvcuys5b8e^yj-#p0q-r')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     
     'django_filters',
 
+    'Administrator',
     'Adminapp',
 ]
 
@@ -69,29 +71,39 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-CORS_ALLOW_ALL_ORIGINS = True   # faqat hozircha
+CORS_ALLOWED_ORIGINS = [
+    "https://hr.medpronix.uz",
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+]
 
-ALLOWED_HOSTS = ['*']  # test uchun
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [
+    "https://hr.medpronix.uz",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+]
+
+
 
 
 AUTH_USER_MODEL = 'Adminapp.User'
 
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # allauth middleware (majburiy!)
     'allauth.account.middleware.AccountMiddleware',
 ]
 
 
-ROOT_URLCONF = 'Adminstrator.urls'
+ROOT_URLCONF = 'Administrator.urls'
 
 TEMPLATES = [
     {
@@ -108,7 +120,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Adminstrator.wsgi.application'
+WSGI_APPLICATION = 'Administrator.wsgi.application'
 
 
 # Database
@@ -146,7 +158,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'  # O'zbekiston vaqti
 
 USE_I18N = True
 
@@ -156,9 +168,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Production uchun
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ✅ Production uchun xavfsizlik sozlamalari
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
