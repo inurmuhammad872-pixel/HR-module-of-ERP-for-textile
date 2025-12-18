@@ -75,6 +75,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://hr.medpronix.uz",
     "http://127.0.0.1:5500",
     "http://localhost:5500",
+    'http://127.0.0.1:5500/',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -180,7 +181,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ✅ Production uchun xavfsizlik sozlamalari
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
