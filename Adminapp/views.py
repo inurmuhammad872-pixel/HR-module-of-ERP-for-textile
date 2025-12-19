@@ -15,6 +15,7 @@ from django.db.models import Q
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import XodimlarFilter
+from django.shortcuts import render
 
 
 

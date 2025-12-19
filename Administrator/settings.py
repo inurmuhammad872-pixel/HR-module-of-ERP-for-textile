@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'rest_framework',
-    
+     'rest_framework.authtoken',
 
     'allauth',
     'allauth.account',
@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     'Administrator',
     'Adminapp',
 ]
+REST_USE_JWT = True
+REST_AUTH_TOKEN_MODEL = None
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
