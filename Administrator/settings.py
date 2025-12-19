@@ -73,18 +73,19 @@ SITE_ID = 1
 
 CORS_ALLOWED_ORIGINS = [
     "https://hr.medpronix.uz",
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    'http://127.0.0.1:5500/',
+    "https://127.0.0.1:5500",
+    "https://localhost:5500",
+    'https://127.0.0.1:5500',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "https://hr.medpronix.uz",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
+    "https://localhost:5500",
+    "https://127.0.0.1:5500",
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 
@@ -182,7 +183,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
