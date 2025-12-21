@@ -77,9 +77,9 @@ SITE_ID = 1
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://hr.medpronix.uz",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
+    "https://hr.medpronix.uz/api/auth/login/",
+    "https://localhost:5500",
+    "https://127.0.0.1:5500",
 ]
 
 
@@ -89,8 +89,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://hr.medpronix.uz",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
+    "https://localhost:5500",
+    "https://127.0.0.1:5500",
 ]
 
 
