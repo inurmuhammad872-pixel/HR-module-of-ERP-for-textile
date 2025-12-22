@@ -55,12 +55,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://localhost:5501",
     "http://127.0.0.1:5501",
-    "https://hr.medpronix.uz/api/auth/login/",
+    "https://hr.medpronix.uz",
 ]
 
 # CSRF sozlamalari
 CSRF_TRUSTED_ORIGINS = [
-    "https://hr.medpronix.uz/api/auth/login/",
+    "https://hr.medpronix.uz",
     "http://hr.medpronix.uz",
     "http://localhost:5500",
     "http://127.0.0.1:5500",
@@ -150,10 +150,8 @@ REST_AUTH = {
 
 # Allauth sozlamalari
 SITE_ID = 1
-ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_METHODS = {'username'}
+ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
