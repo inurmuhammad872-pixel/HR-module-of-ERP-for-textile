@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 ]
 
 # CORS sozlamalari (Muhim o'zgarishlar)
-CORS_ALLOW_ALL_ORIGINS = True  # Rivojlanish uchun, productionda o'zgartiring
+CORS_ALLOW_ALL_ORIGINS = False  # Rivojlanish uchun, productionda o'zgartiring
 CORS_ALLOW_CREDENTIALS = True
 
 # CORS_ALLOWED_ORIGINS ni comment qiling yoki to'liq ro'yxat qiling
@@ -94,8 +94,6 @@ CORS_ALLOW_METHODS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -150,7 +148,9 @@ REST_AUTH = {
 
 # Allauth sozlamalari
 SITE_ID = 1
-ACCOUNT_LOGIN_METHODS = {'username'}
+ACCOUNT_LOGIN_METHODS = 'username'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
 
 AUTHENTICATION_BACKENDS = [
@@ -166,7 +166,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
