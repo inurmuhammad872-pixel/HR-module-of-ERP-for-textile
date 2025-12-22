@@ -142,9 +142,10 @@ REST_AUTH = {
     'JWT_AUTH_REFRESH_COOKIE': 'refresh',
     'JWT_AUTH_HTTPONLY': False,
     'SESSION_LOGIN': False,
-    'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
-    'LOGIN_SERIALIZER': 'dj_rest_auth.serializers.LoginSerializer',
+    'LOGIN_SERIALIZER': 'Adminapp.serializers.CustomLoginSerializer',
+    'REGISTER_SERIALIZER': 'Adminapp.serializers.CustomRegisterSerializer',
 }
+
 
 # Allauth sozlamalari
 SITE_ID = 1
