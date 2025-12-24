@@ -45,12 +45,6 @@ INSTALLED_APPS = [
     'Adminapp',
 ]
 
-<<<<<<< HEAD
-=======
-# CORS sozlamalari (Muhim o'zgarishlar)
-CORS_ALLOW_ALL_ORIGINS = False  # Rivojlanish uchun, productionda o'zgartiring
-CORS_ALLOW_CREDENTIALS = True
->>>>>>> fd59482c8aa9883a99f5de8060b7b1a170901ce0
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",
@@ -96,10 +90,7 @@ CORS_ALLOW_METHODS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-<<<<<<< HEAD
         'rest_framework.authentication.SessionAuthentication',
-=======
->>>>>>> fd59482c8aa9883a99f5de8060b7b1a170901ce0
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -144,7 +135,6 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'access',
     'JWT_AUTH_REFRESH_COOKIE': 'refresh',
     'JWT_AUTH_HTTPONLY': False,
-<<<<<<< HEAD
 }
 
 
@@ -155,22 +145,6 @@ ACCOUNT_EMAIL_REQUIRED = False
 
 # Allauth sozlamalari
 SITE_ID = 1
-=======
-    'SESSION_LOGIN': False,
-    'LOGIN_SERIALIZER': 'Adminapp.serializers.CustomLoginSerializer',
-    'REGISTER_SERIALIZER': 'Adminapp.serializers.CustomRegisterSerializer',
-}
-
-
-# Allauth sozlamalari
-SITE_ID = 1
-ACCOUNT_LOGIN_METHODS = {'username'}
-
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
->>>>>>> fd59482c8aa9883a99f5de8060b7b1a170901ce0
 ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
 
 AUTHENTICATION_BACKENDS = [
