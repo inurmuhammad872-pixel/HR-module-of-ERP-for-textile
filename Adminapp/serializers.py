@@ -2,6 +2,7 @@ from rest_framework import serializers
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
 from .models import User, Xodimlar
+from dj_rest_auth.serializers import LoginSerializer
 
 class CustomRegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
@@ -35,3 +36,6 @@ class TatilUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Xodimlar
         fields = ['tatil_holati', 'tatil_boshlanish_sana', 'tatil_tugash_sana']
+
+class CustomLoginSerializer(LoginSerializer):
+    pass

@@ -45,11 +45,7 @@ INSTALLED_APPS = [
     'Adminapp',
 ]
 
-# CORS sozlamalari (Muhim o'zgarishlar)
-CORS_ALLOW_ALL_ORIGINS = True  # Rivojlanish uchun, productionda o'zgartiring
-CORS_ALLOW_CREDENTIALS = True
 
-# CORS_ALLOWED_ORIGINS ni comment qiling yoki to'liq ro'yxat qiling
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
@@ -95,7 +91,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -132,25 +127,24 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_EXP_CLAIM': 'exp',
 }
 
-# DJ-REST-AUTH sozlamalari
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'access'
-JWT_AUTH_REFRESH_COOKIE = 'refresh'
-JWT_AUTH_HTTPONLY = False  # JavaScript orqali token olish uchun
 
 REST_AUTH = {
     'USE_JWT': True,
+    'LOGIN_SERIALIZER': 'Adminapp.serializers.CustomLoginSerializer',
+    'REGISTER_SERIALIZER': 'Adminapp.serializers.CustomRegisterSerializer',
     'JWT_AUTH_COOKIE': 'access',
     'JWT_AUTH_REFRESH_COOKIE': 'refresh',
     'JWT_AUTH_HTTPONLY': False,
-    'SESSION_LOGIN': False,
-    'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
-    'LOGIN_SERIALIZER': 'dj_rest_auth.serializers.LoginSerializer',
 }
+
+
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 
 # Allauth sozlamalari
 SITE_ID = 1
-ACCOUNT_LOGIN_METHODS = {'username'}
 ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
 
 AUTHENTICATION_BACKENDS = [
@@ -166,7 +160,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
