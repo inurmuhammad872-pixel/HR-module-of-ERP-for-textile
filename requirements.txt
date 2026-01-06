@@ -4,6 +4,9 @@ django-filter
 django-cors-headers
 django-allauth
 dj-rest-auth
+djangorestframework-simplejwt
+drf-yasg==1.21.7
+
 pandas
 numpy
 openpyxl
@@ -12,4 +15,3 @@ python-dateutil
 pytz
 sqlparse
 tzdata
-
