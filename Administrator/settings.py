@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Third party
     'corsheaders',
     'rest_framework',
+    'drf_yasg',
     'rest_framework.authtoken',
     'allauth',
     'allauth.account',
@@ -76,6 +77,9 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 CORS_ALLOW_METHODS = [
     'DELETE',
