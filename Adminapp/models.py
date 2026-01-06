@@ -23,79 +23,79 @@ class IshHolati(models.TextChoices):
 
 
 class Xodimlar(models.Model):
+    
     # -----------------------------
     # ASOSIY MA’LUMOTLAR
     # -----------------------------
+    ism = models.CharField(max_length=100, null=True, blank=True)
+    sharif = models.CharField(max_length=200, null=True, blank=True)
+    familiya = models.CharField(max_length=200, null=True, blank=True)
+    tugilgan_sana = models.DateField(null=True, blank=True)
+    jins = models.CharField(max_length=10, choices=Jins.choices, null=True, blank=True)
+    tugilgan_joyi = models.CharField(max_length=100, null=True, blank=True)
+    fuqarolik = models.CharField(max_length=100, null=True, blank=True)
 
-    ism = models.CharField(max_length=100)
-    sharif = models.CharField(max_length=200)
-    familiya = models.CharField(max_length=200)
-    tugilgan_sana = models.DateField()
-    jins = models.CharField(max_length=10, choices=Jins.choices)
-    tugilgan_joyi = models.CharField(max_length=100)
-    fuqarolik = models.CharField(max_length=100)
+    pasport_berilgan_joy = models.CharField(max_length=200, null=True, blank=True)
+    pasport_berilgan_sana = models.DateField(null=True, blank=True)
+    soliq_raqami = models.CharField(max_length=20, null=True, blank=True)
 
-    pasport_seriya = models.CharField(
-        max_length=2,
-        validators=[RegexValidator(r'^[A-Z]{2}$', message="Pasport seriyasi 2 ta bosh harf bolishi kerak.")],
-        null=True
-    )
-    pasport_raqam = models.IntegerField(
-        validators=[MinValueValidator(1000000), MaxValueValidator(9999999)],
-        null=True
-    )
-    pasport_berilgan_joy = models.CharField(max_length=200)
-    pasport_berilgan_sana = models.DateField()
-    soliq_raqami = models.CharField(max_length=20)
-
-    yashash_manzili = models.CharField(max_length=200)
-    telefon = models.CharField(max_length=20)
-    email = models.EmailField(max_length=100)
-    ijtimoiy_tarmoq = models.CharField(max_length=100)
-    aloqa_usuli = models.CharField(max_length=50)
+    yashash_manzili = models.CharField(max_length=200, null=True, blank=True)
+    telefon = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(max_length=100, null=True, blank=True)
+    ijtimoiy_tarmoq = models.CharField(max_length=100, null=True, blank=True)
+    aloqa_usuli = models.CharField(max_length=50, null=True, blank=True)
 
     # -----------------------------
-    # OILA MA’LUMOTLARI
+    # OILA
     # -----------------------------
-    oilaviy_holat = models.CharField(max_length=50)
-    turmush_ortogi_haqida = models.CharField(max_length=200, null=True, blank=True)
+    oilaviy_holat = models.CharField(max_length=50, null=True, blank=True)
     farzandlar_soni = models.IntegerField(
         default=0,
+        null=True,
+        blank=True,
         validators=[MinValueValidator(0), MaxValueValidator(8)]
     )
-    farzandlar_haqida = models.CharField(max_length=200, null=True, blank=True)
-    nogironlik_holati = models.CharField(max_length=100, null=True, blank=True)
-    imtiyozlar = models.CharField(max_length=200, null=True, blank=True)
 
     # -----------------------------
     # TA’LIM VA KONIKMALAR
     # -----------------------------
-    diplom_malumotlari = models.CharField(max_length=200)
-    maxsus_kurslar = models.CharField(max_length=200, null=True, blank=True)
-    sertifikatlar = models.FileField(upload_to='certificates/', null=True, blank=True)
-    til_bilish_darajasi = models.CharField(max_length=200)
-    kompyuter_konikalari = models.CharField(max_length=255, null=True, blank=True)
-    kasbiy_konikalari = models.CharField(max_length=200)
-    haydovchilik_guvohnomasi = models.CharField(max_length=100, null=True, blank=True)
+    diplom_malumotlari = models.CharField(max_length=200, null=True, blank=True)
+    til_bilish_darajasi = models.CharField(max_length=200, null=True, blank=True)
+    kasbiy_konikalari = models.CharField(max_length=200, null=True, blank=True)
 
     # -----------------------------
     # ISH MA’LUMOTLARI
     # -----------------------------
-    lavozim = models.CharField(max_length=100)
-    bolim = models.CharField(max_length=100)
-    rahbar = models.CharField(max_length=100)
-    shartnoma_turi = models.CharField(max_length=100, choices=ShartnomaTuri.choices)
-    davomat = models.CharField(max_length=200)
-    tarif_razryad = models.CharField(max_length=100)
-    oylik = models.DecimalField(max_digits=10, decimal_places=2)
-    ish_holati = models.CharField(max_length=50, choices=IshHolati.choices)
+    lavozim = models.CharField(max_length=100, null=True, blank=True)
+    bolim = models.CharField(max_length=100, null=True, blank=True)
+    rahbar = models.CharField(max_length=100, null=True, blank=True)
+    shartnoma_turi = models.CharField(
+        max_length=100,
+        choices=ShartnomaTuri.choices,
+        null=True,
+        blank=True
+    )
+    davomat = models.CharField(max_length=200, null=True, blank=True)
+    tarif_razryad = models.CharField(max_length=100, null=True, blank=True)
+    oylik = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+    ish_holati = models.CharField(
+        max_length=50,
+        choices=IshHolati.choices,
+        null=True,
+        blank=True
+    )
 
     # -----------------------------
     # ISH GRAFIGI
     # -----------------------------
-    ish_soatlari = models.CharField(max_length=100)
-    smena_raqami = models.IntegerField()
-    time_tracker_holati = models.CharField(max_length=100) 
+    ish_soatlari = models.CharField(max_length=100, null=True, blank=True)
+    smena_raqami = models.IntegerField(null=True, blank=True)
+    time_tracker_holati = models.CharField(max_length=100, null=True, blank=True)
     tatil_holati = models.BooleanField(default=False)  
     tatil_boshlanish_sana = models.DateField(null=True, blank=True)
     tatil_tugash_sana = models.DateField(null=True, blank=True)
